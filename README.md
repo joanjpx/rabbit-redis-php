@@ -6,8 +6,19 @@ Este es un pequeño proyecto de ejemplo para probar la integración de PHP con R
 
 - Docker
 - Docker Compose
+- Make (opcional, para usar el Makefile)
 
-## Configuración y Ejecución
+## Uso Rápido (Makefile)
+
+Si tienes `make` instalado, puedes usar los siguientes atajos:
+- `make build`: Construye e inicia todo.
+- `make install`: Instala dependencias.
+- `make test-redis`: Prueba Redis.
+- `make test-producer` / `make test-consumer`: Pruebas de RabbitMQ.
+- `make shell`: Acceder al contenedor PHP.
+- `make help`: Ver todos los comandos disponibles.
+
+## Configuración Manual
 
 1.  **Levantar los contenedores:**
     ```bash
@@ -45,6 +56,19 @@ docker-compose exec php php src/rabbit_producer.php
 
 - **RabbitMQ Management:** [http://localhost:15672](http://localhost:15672) (Usuario/Password: `guest`/`guest`)
 - **Redis Commander (Web UI):** [http://localhost:8081](http://localhost:8081)
+
+## Tests de Estrés (RabbitMQ)
+
+Para probar el rendimiento y cómo RabbitMQ gestiona grandes volúmenes de datos, he incluido scripts de estrés.
+
+### Ejecución
+1.  **Lanzar el consumidor:** `make stress-consumer` (esperará mensajes).
+2.  **Lanzar el productor:** `make stress-producer` (enviará 10,000 mensajes).
+
+### Qué observar
+-   **Velocidad (msgs/sec):** Ambos scripts calculan la velocidad media de envío y procesamiento.
+-   **Dashboard:** En el panel de RabbitMQ, verás picos en la gráfica de `Message rates`.
+-   **Backlog:** Si cierras el consumidor y lanzas el productor varias veces, verás cómo la cola se llena. Luego, al abrir el consumidor, verás cómo baja el tráfico progresivamente.
 - **Redis CLI (desde Terminal):** Disponible mediante los comandos detallados abajo.
 
 ## Gestión de Redis desde CLI
