@@ -29,8 +29,11 @@ shell: ## Entra a la terminal del contenedor PHP
 redis-cli: ## Entra a la consola de Redis
 	$(REDIS_CONT) redis-cli
 
-test-redis: ## Ejecuta la prueba de Redis
+test-redis: ## Ejecuta la prueba de Redis (Simple)
 	$(PHP_CONT) php src/redis_test.php
+
+test-redis-types: ## Ejecuta la prueba de Redis con múltiples tipos de datos
+	$(PHP_CONT) php src/redis_data_types.php
 
 test-producer: ## Ejecuta el productor de RabbitMQ
 	$(PHP_CONT) php src/rabbit_producer.php

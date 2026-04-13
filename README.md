@@ -13,7 +13,8 @@ Este es un pequeño proyecto de ejemplo para probar la integración de PHP con R
 Si tienes `make` instalado, puedes usar los siguientes atajos:
 - `make build`: Construye e inicia todo.
 - `make install`: Instala dependencias.
-- `make test-redis`: Prueba Redis.
+- `make test-redis`: Prueba Redis (String simple).
+- `make test-redis-types`: Prueba completa con Strings, Sets, Lists y Hashes.
 - `make test-producer` / `make test-consumer`: Pruebas de RabbitMQ.
 - `make shell`: Acceder al contenedor PHP.
 - `make help`: Ver todos los comandos disponibles.
